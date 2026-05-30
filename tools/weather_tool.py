@@ -2,39 +2,30 @@ import requests
 
 def get_weather():
 
-    latitude = 15.2993
-    longitude = 74.1240
-
-    url = (
-        f"https://api.open-meteo.com/v1/forecast?"
-        f"latitude={latitude}&longitude={longitude}"
-        f"&daily=temperature_2m_max"
-        f"&timezone=auto"
-    )
-
     try:
+        url = (
+            "https://api.open-meteo.com/v1/forecast"
+            "?latitude=15.2993"
+            "&longitude=74.1240"
+            "&daily=temperature_2m_max"
+            "&timezone=auto"
+        )
+
         response = requests.get(url)
+        data = response.json()
 
-        if response.status_code == 200:
-            data = response.json()
+        temp = data["daily"]["temperature_2m_max"][0]
 
-            dates = data["daily"]["time"]
-            temps = data["daily"]["temperature_2m_max"]
-
-            weather_data = []
-
-            for date, temp in zip(dates[:3], temps[:3]):
-                weather_data.append({
-                    "date": date,
-                    "temperature": temp
-                })
-
-            return weather_data
-
-        return []
+        return {
+            "condition": "Forecast",
+            "temperature": f"{temp}°C"
+        }
 
     except Exception as e:
-        return str(e)
+        return {
+            "condition": "Unavailable",
+            "temperature": str(e)
+        }
 
 
 if __name__ == "__main__":

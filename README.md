@@ -1,26 +1,25 @@
 # Agentic AI Travel Planning Assistant
 
-An AI-powered travel planner that uses multiple agents to generate intelligent travel recommendations.
+An AI-powered travel planning application that helps users generate personalized travel plans based on destination, budget, weather, hotels, flights, and tourist attractions.
 
 ## Features
 
-- Flight Recommendation Agent
-- Hotel Recommendation Agent
-- Places Recommendation Agent
-- Weather Agent
-- Budget Planning Agent
-- AI Travel Planner using Groq LLM
+- Flight Recommendations
+- Hotel Recommendations
+- Tourist Attractions Suggestions
+- Weather Forecast
+- Budget Planning
+- AI Generated Travel Itinerary
+- Download Travel Report
+- Interactive Streamlit Dashboard
 
-## Tech Stack
+## Technologies Used
 
 - Python
 - Streamlit
+- Groq LLM
 - LangChain
-- Groq API
-- JSON Dataset
+- JSON
+- dotenv
 
-## Run
-
-pip install -r requirements.txt
-
-python -m streamlit run app.py
+## Project Structure

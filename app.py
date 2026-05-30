@@ -36,7 +36,8 @@ value=10000
 )
 
 if st.button("🚀 Generate Travel Plan"):
-  if not source or not destination:
+
+ if not source or not destination:
     st.warning(
         "Please enter Source City and Destination City."
     )
@@ -66,9 +67,7 @@ with st.spinner("Generating Travel Plan..."):
         days
     )
 
-    # -------------------------
     # Flight Section
-    # -------------------------
 
     st.subheader("✈ Flight Recommendation")
 
@@ -92,55 +91,69 @@ with st.spinner("Generating Travel Plan..."):
             f"{source} → {destination}"
         )
 
-    # -------------------------
     # Hotel Section
-    # -------------------------
 
     st.subheader("🏨 Hotel Recommendation")
 
-    if "name" in hotel:
-        st.write(f"🏨 Hotel Name: {hotel['name']}")
+    st.success(
+        f"""
 
-    st.write(f"⭐ Rating: {hotel['stars']} Stars")
-    st.write(
-        f"💰 Price Per Night: ₹{hotel['price_per_night']}"
-    )
+🏨 Hotel Name: {hotel.get('name', 'Recommended Hotel')}
 
-    # -------------------------
+⭐ Rating: {hotel['stars']} Stars
+
+💰 Price Per Night: ₹{hotel['price_per_night']}
+"""
+)
+
     # Places Section
-    # -------------------------
 
     st.subheader("📍 Top Attractions")
 
     for place in places:
 
-        st.write(
-            f"✅ {place['name']} "
-            f"({place['type']}) "
-            f"⭐ {place['rating']}"
-        )
+        st.info(
+            f"""
 
-    # -------------------------
+📍 {place['name']}
+
+🏷 Category: {place['type']}
+
+⭐ Rating: {place['rating']}
+"""
+)
+
     # Weather Section
-    # -------------------------
 
     st.subheader("🌤 Weather Forecast")
 
-    try:
+    if isinstance(weather, dict):
 
-        for day in weather:
+        col1, col2 = st.columns(2)
 
-            st.write(
-                f"📅 {day['date']} | "
-                f"🌡 {day['temperature']}°C"
+        with col1:
+            st.metric(
+                "Condition",
+                weather.get(
+                    "condition",
+                    "Forecast"
+                )
             )
 
-    except Exception:
-        st.write(weather)
+        with col2:
+            st.metric(
+                "Temperature",
+                weather.get(
+                    "temperature",
+                    "N/A"
+                )
+            )
 
-    # -------------------------
+    else:
+
+        st.info(str(weather))
+
     # Budget Section
-    # -------------------------
 
     st.subheader("💰 Budget Breakdown")
 
@@ -176,9 +189,7 @@ with st.spinner("Generating Travel Plan..."):
 
     st.divider()
 
-    # -------------------------
     # AI Travel Report
-    # -------------------------
 
     st.subheader("🤖 AI Generated Travel Report")
 
