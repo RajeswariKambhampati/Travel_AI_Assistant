@@ -60,9 +60,7 @@ streamlit run app.py
 
 
 ## 🌐 Live Demo
-
-Add your Streamlit deployment link here.
-
+https://travelaiassistant-ytaldhreouas3bedyx7wks.streamlit.app/
 ## 👩‍💻 Author
 
 Rajeswari Kammampati
